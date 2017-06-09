@@ -44,7 +44,7 @@ public class WebServer {
                 url = getArray[1];
 
                 File file = new File("www" + url);
-                PrintStream out = new PrintStream(socket.getOutputStream(), false);
+                PrintStream outStream = new PrintStream(socket.getOutputStream(), false);
 
                 if (file.exists()) {
 
@@ -54,8 +54,8 @@ public class WebServer {
                         data += input;
                     }
                     String header = "HTTP/1.1 200 OK\nContent-type: text/html\nContent-length: " + data.length();
-                    out.println(header + data);
-                    out.flush();
+                    outStream.println(header + data);
+                    outStream.flush();
 
                 } else {
 
@@ -68,8 +68,8 @@ public class WebServer {
                     }
 
                     String header = "HTTP/1.1 404 Not Found\nContent-type: text/html\nContent-length: " + data.length();
-                    out.println(header + data);
-                    out.flush();
+                    outStream.println(header + data);
+                    outStream.flush();
                 }
                 socket.close();
 
